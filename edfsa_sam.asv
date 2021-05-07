@@ -1,0 +1,84 @@
+function[tt]=edfsa_sam(Mguding,Nguding,w)    
+w=10;
+U=Mguding+Nguding;
+NumU=U;
+t2=0;
+wen2=0;
+t_id=(25*96+200);
+t_inf=(w*25+200);
+for i=1:U
+B(i)=i;    %每个标签有自己的编号(假设为96位)，其中前M个为已知标签，后N个为未知标签
+end;
+   tidjishu=0;
+  
+while(U~=0)
+% % end;
+ tidjishu2=0;
+wen2=wen2+1;
+wen2
+ if U>4
+    f=round((U)/1);
+else 
+    f=U;
+end;
+    EV2=zeros(1,f);
+     EV=zeros(1,f);
+    AV3=zeros(1,f);
+      AV33=zeros(1,f);
+    AV4=zeros(1,f);
+    idresult2=zeros(1,U);
+    Uidresult1=zeros(1,U);%每一轮重新对已知标签和未知标签进行映射
+    Uidresult2=zeros(1,U);
+     shanchuU=zeros(1,U); %记录删除的U
+    tchangjishu=0; %记录id回复的长度
+    tljishu=0; %记录回复的标签ID数
+    k=0;
+   
+  for i=1:1:U
+    
+aaaa=unidrnd(f);
+idresult2(i)=aaaa;%产生1到f均匀分布的随机数，对应于各已知标签id映射的位置;
+end;  
+x=unique(idresult2);%不同元素个数
+   y=idresult2;
+   [m1,n1]=hist(y,x); %m为n在Y中出现的次数
+  % ------两次哈希映射
+for i=1:1:length(n1)
+        if n1(i)>0
+        AV3(n1(i))=m1(i);
+        end;
+        if m1(i)>0
+        EV(n1(i))=1;
+        end;%EV为对应的1的时隙，EV1为对应的标签数量
+end; 
+
+for i=1:1:f
+    if EV(i)==1%多个标签都选择了2
+        tchangjishu=tchangjishu+1;
+        if  AV3(i)==1
+              tidjishu=tidjishu+1;  %记录消除的已知标签数
+               tidjishu2=tidjishu2+1;  %记录消除的已知标签数
+                a=find(idresult2==i); %找到映射到该时隙的标签下标
+               if sum(a)>0
+                   for l=1:1:length(a)
+                   e=B(a(l));
+                NumU=NumU-1;%一定是已知标签
+                shanchuU(k+1)=e;%记录该删除的已知标签，下一轮静墨
+                k=k+1; 
+                   end;
+               end;
+        end;
+    end;
+end;
+        
+       shanchu=[shanchuU(1:k)];
+    shanchushu=zeros(1,length(shanchu));
+   for i=1:1:length(shanchu)
+       shanchushu(i)=find(B==shanchu(i));%找出该删除或者静默的标签在A中对应的下标
+   end;
+    B(shanchushu(1:k))=[];  
+      t2=t2+f*t_id+tidjishu2*tinf;
+      U=NumU;
+end
+tt=t2/1000;
+    
