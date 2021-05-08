@@ -1,2 +1,2 @@
 # Information-sampling
-The protocols for information sampling
+The RFID protocols for information sampling
