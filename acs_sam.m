@@ -12,7 +12,7 @@
              t_com=0;
              t_uncom=0;
              for i=1:sumshu
-                 A(i)=i;
+                 A(i)=i; %Records the tags in the back-end server
              end;
              %---------------
              while(M>0)
