@@ -76,7 +76,7 @@
                                 record_index=zeros(1,16); 
                                 for j=1:1:Arand(a)
                                     mm=rand(1,1);
-                                    sump=0; %累计概率
+                                    sump=0; 
                                     for js=1:1:16
                                         if mm>sump&&mm<=sump+(1/(2^js))
                                             record_num(js)=record_num(js)+1; 
