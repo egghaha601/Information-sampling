@@ -12,11 +12,11 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
             tll=0;
             for i=1:T_s+T_uns Mguding=num_c*size_c*Sa;
             Uguding=num_c*size_c*(1-Sa);
-                A(i)=i;%每个标签有自己的编号(假设为96位)，其中前M个为已知标签，后N个为未知标签
+                A(i)=i;
             end;
             while(T_uns>0)
                 idresult1=zeros(1,T_s);
-                Uidresult1=zeros(1,T_uns);%每一轮重新对已知标签和未知标签进行映射
+                Uidresult1=zeros(1,T_uns);
                 if T_s>2
                     f=round(Mguding);
                 else
@@ -30,19 +30,19 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
                 delete_uns=zeros(1,T_uns);
                 for i=1:1:T_s
                     aaaa=unidrnd(f);
-                    idresult1(i)=aaaa;%产生1到f均匀分布的随机数，对应于各已知标签id映射的位置;
+                    idresult1(i)=aaaa;
                 end;
-                %----做了两次哈希映射
-                x=unique(idresult1);%不同元素个数
+                
+                x=unique(idresult1);
                 y=(idresult1);
-                [m1,n1]=hist(y,x); %m为n在Y中出现的次数
+                [m1,n1]=hist(y,x); 
                 for i=1:1:T_uns
                     Uidresult1(i)=unidrnd(f);
                 end; 
                 result1=[idresult1,Uidresult1];
-                xa=unique(result1);%不同元素个数
+                xa=unique(result1);
                 ya=result1;
-                [ma1,na1]=hist(ya,xa); %m为n在Y中出现的次数
+                [ma1,na1]=hist(ya,xa); 
                 for i=1:1:length(na1)
                     if na1(i)>0
                         EV11(na1(i))=ma1(i);
@@ -61,10 +61,10 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
                             else flag=flag-1;
                             end;
                         end;
-                        if (flag==length(a))%只有非关键标签
+                        if (flag==length(a))
                             EV1(i)=1;
                         else
-                            EV111(i)=0;%只有关键标签或混合的
+                            EV111(i)=0;
                         end;
                     else if length(a)==1
                             e=A(a);
@@ -82,9 +82,9 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
                         a=find(result11==i);
                         if sum(a)>0
                             for zz=1:1:length(a)
-                                e=a(zz);%A(a)对应于A中的第几个，e就是实际要删除的标签号
+                                e=a(zz);
                                 if A(e)>Mguding&&A(e)<=Mguding+Uguding
-                                    delete_uns(j+1)=e;%记录A中该删除的已知标签的下标，下一轮静墨
+                                    delete_uns(j+1)=e;
                                     j=j+1;
                                 end;
                             end;
