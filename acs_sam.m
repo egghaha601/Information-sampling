@@ -3,7 +3,7 @@
              Nguding=num_c*size_c*(1-Sa);
              bit_com=0;
              bit_uncom=0;
-             sumshu=Mguding+Nguding; %所有标签
+             sumshu=Mguding+Nguding; 
              NumM=Mguding;
              NumN=Nguding;
              M=NumM;
@@ -32,13 +32,13 @@
                  if N>0
                      for i=1:1:N
                          aaaa=unidrnd(f);
-                         Nidresult1(i)=aaaa;%产生1到f均匀分布的随机数，对应于各已知标签id映射的位置;
+                         Nidresult1(i)=aaaa;
                      end;
                  end;
                  result1=[idresult1,Nidresult1];
-                 xa=unique(result1);%不同元素个数
+                 xa=unique(result1);
                  ya=result1;
-                 [ma1,na1]=hist(ya,xa); %m为n在Y中出现的次数
+                 [ma1,na1]=hist(ya,xa); 
                  for i=1:1:length(na1)
                      if na1(i)>0
                          AV1(na1(i))=ma1(i);
@@ -49,7 +49,7 @@
                      if AV1(i)>0
                          a=find(result1==i);
                          if length(a)==1
-                             if A(a)<=Mguding %record the time slot selected by the sampled tags
+                             if A(a)<=Mguding 
                                  AV(i)=1;
                              end;
                          end;
@@ -59,7 +59,7 @@
                  if w1>0
                      for i=1:1:f
                          if AV(i)==1
-                             tlongjishu=tlongjishu+1; %record the reproted sampled tags in each round
+                             tlongjishu=tlongjishu+1; 
                              b=find(result1==i);
                              delete_sam(k+1)=b;
                              k=k+1;
