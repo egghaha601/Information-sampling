@@ -10,8 +10,7 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
             wen=0;
             t1=0;
             tll=0;
-            for i=1:T_s+T_uns Mguding=num_c*size_c*Sa;
-            Uguding=num_c*size_c*(1-Sa);
+            for i=1:T_s+T_uns 
                 A(i)=i;
             end;
             while(T_uns>0)
