@@ -101,7 +101,7 @@ function[tt]=iveki_sam(num_c,size_c,Sa,t_id, t_id2, t_inf)
                 tll=tll+EVt;
                 
             end;
-%-------------------------------------------------- collect information
+
                 T_s=Mguding;
                 T_uns=0;
                 NumM=T_s;
